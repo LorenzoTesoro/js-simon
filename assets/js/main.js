@@ -3,6 +3,27 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
 */
 
 // 1. Visualizzare in pagina 5 numeri casuali - mathRandom()
+    // 1.1. Funzione per restituire n. casuali in un range(min, max)
+    // 1.2 while loop - finchè la lunghezza dell'array è < 5, cicla. Ottenuti i numeri, stampali a schermo
+    /* get n random numbers */
+    function getNRandomNumbers (min, max){
+
+        function getRandomNumbers(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) ) + min;
+          }
+        const randomNumbers = [];
+
+        const n = 5; // change this to modify array.length
+
+        while(randomNumbers.length < n){
+            const ulElement = document.querySelector("ul"); // seleziono elemento della dom
+            const number = getRandomNumbers(1,100); // genero n casuale
+            randomNumbers.push(number); // pusho il numero nell'array
+            ulElement.innerHTML += `<li>${number}</li>`; // stampo a schermo
+        }
+    }
+
+    getNRandomNumbers(1,100);
 
 // 2. Timer di 30 secondi, dopodichè i numeri scompaiono - setTimeout()
 
