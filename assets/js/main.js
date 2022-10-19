@@ -1,7 +1,3 @@
-/* Consegna:
-Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt(). Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-*/
-
 // 1. Visualizzare in pagina 5 numeri casuali - mathRandom()
     // 1.1. Funzione per restituire n. casuali in un range(min, max)
     // 1.2 while loop - finchè la lunghezza dell'array è < 5, cicla. Ottenuti i numeri, stampali a schermo
@@ -20,7 +16,6 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
 
         while(NumbersList.length < n){
             const number = getRandomNumbers(from,to); // genero n casuale
-            console.log(number, "sono random number")
             NumbersList.push(number); // pusho il numero nell'array
             ulElement.innerHTML += `<li>${number}</li>`; // stampo a schermo
         }
@@ -42,27 +37,30 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
     // 3.2 - setto un TimeOut 1s dopo la fine di quello precedente
 
     setTimeout( function(){
-    const n = 5
-    const prompts = [];
+        const prompts = []; 
         // ciclo fino a 5 per generare i 5 prompt che salvo nell'array
+        const n = 5 // n. massimo tentativi
+        let counter = 0; // n. indovinati
         while(prompts.length < n){
             const singlePrompt = Number(prompt("Inserisci un numero")) // genero un prompt
-            console.log(singlePrompt, "sono nel prompt");
-            prompts.push(singlePrompt); // pusho il numero nell'array63
+            prompts.push(singlePrompt); // pusho il numero nell'array
         }
-        console.log(prompts);
+ 
+        setTimeout(function (){
         // ciclo all'interno dei numeri random e li confronto con i valori inseriti dall'utente
         for(let i = 0; i < randomNumbers.length; i++){
                 const randomNumber = randomNumbers[i];
                 for(let i = 0; i < prompts.length; i++){
                     const userNumber = prompts[i];
                     if(randomNumber == userNumber){
-                        console.log(randomNumber, "sono nell'if")
                         document.querySelector(".result > ul").innerHTML += `<li>${randomNumber}</li>`;
-                    } 
+                        counter++
+                    }
                 }
-        } 
-            
+        }
+            document.querySelector("h2").innerHTML = `Numeri individuati: ${counter} su ${n}`;
+        }, 1000);
+        
     }, 4000);  
 
     
