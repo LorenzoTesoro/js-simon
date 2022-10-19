@@ -6,6 +6,9 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
     // 1.1. Funzione per restituire n. casuali in un range(min, max)
     // 1.2 while loop - finchè la lunghezza dell'array è < 5, cicla. Ottenuti i numeri, stampali a schermo
     /* get n random numbers */
+
+    const ulElement = document.querySelector("ul"); // seleziono elemento della dom in cui stampare i n.
+
     function getNRandomNumbers (min, max){
 
         function getRandomNumbers(min, max) {
@@ -13,10 +16,9 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
           }
         const randomNumbers = [];
 
-        const n = 5; // change this to modify array.length
+        const n = 5; // change this to set while condition
 
         while(randomNumbers.length < n){
-            const ulElement = document.querySelector("ul"); // seleziono elemento della dom
             const number = getRandomNumbers(1,100); // genero n casuale
             randomNumbers.push(number); // pusho il numero nell'array
             ulElement.innerHTML += `<li>${number}</li>`; // stampo a schermo
@@ -26,6 +28,14 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
     getNRandomNumbers(1,100);
 
 // 2. Timer di 30 secondi, dopodichè i numeri scompaiono - setTimeout()
+    // 2.1 - Classe css d-none
+    // 2.2 - dopo 30s applichi la classe a ul
+    
+    const hideUlElement = function(){
+        ulElement.classList.add("d_none");
+    }
+
+    setTimeout(hideUlElement, 3000);
 
 // 3. L'utente deve inserire i numeri che ha visto - prompt() * 5
 
