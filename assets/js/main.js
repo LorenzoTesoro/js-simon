@@ -9,23 +9,24 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
 
     const ulElement = document.querySelector("ul"); // seleziono elemento della dom in cui stampare i n.
 
+    /* generate n random numbers from min to max */
     function getNRandomNumbers (min, max){
 
         function getRandomNumbers(min, max) {
             return Math.floor(Math.random() * (max - min + 1) ) + min;
           }
-        const randomNumbers = [];
-
+        const NumbersList = [];
         const n = 5; // change this to set while condition
 
-        while(randomNumbers.length < n){
+        while(NumbersList.length < n){
             const number = getRandomNumbers(1,100); // genero n casuale
-            randomNumbers.push(number); // pusho il numero nell'array
+            NumbersList.push(number); // pusho il numero nell'array
             ulElement.innerHTML += `<li>${number}</li>`; // stampo a schermo
         }
+        return NumbersList
     }
 
-    getNRandomNumbers(1,100);
+    const randomNumbers = getNRandomNumbers(1,100);
 
 // 2. Timer di 30 secondi, dopodichè i numeri scompaiono - setTimeout()
     // 2.1 - Classe css d-none
@@ -39,7 +40,8 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
     // 3.1 - creo una funzione per stampare i 5 prompt
     // 3.2 - setto un TimeOut 1s dopo la fine di quello precedente
 
-    function promptGenerator(){
+    /* generate n prompts */
+    const userNumbers = function (){
     
     const prompts = [];
     const n = 5
@@ -48,9 +50,13 @@ Visualizzare in pagina 5 numeri casuali. Da lì parte un timer di 30 secondi. Do
             const singlePrompt = Number(prompt("Inserisci un numero")) // genero un prompt
             prompts.push(singlePrompt); // pusho il numero nell'array
         }
+        return prompts;
+    } 
 
-    }
+    setTimeout(userNumbers, 4000);
 
-    setTimeout(promptGenerator, 4000);
-
+    
 // 4. Confronto tra numeri comparsi a schermo e numeri inseriti dall'utente - if() e ciclo for
+        // 4.1 Prendo l'array dei numeri random e ciclo; per ogni numero ciclo all'interno dei valori del prompt per vedere se è incluso
+
+  
